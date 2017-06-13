@@ -1,8 +1,8 @@
-#simpleBookPush
+# simpleBookPush
 This is used for push books to kindle mail automatically , You can used the tools by simply filling in the config files and setting up the environment in server. I used a raspberry Pi as the server.
-#Environment Set up
-###Server Software Configure
-######set up the environment in raspberry or Debian/Ubuntu system with following commands:
+# Environment Set up
+### Server Software Configure
+###### set up the environment in raspberry or Debian/Ubuntu system with following commands:
 ```
 apt-get update
 sudo apt-get upgrade
@@ -10,8 +10,10 @@ sudo apt-get install libev-dev mysql-server python-mysqldb
 sudo pip install bjoern 
 sudo apt-get install smbclient samba samba-common-bin
 ```
-###Mysql Configure 
-######Set mysql configure so that we can connect the mysql from network and set default character code as utf8
+
+### Mysql Configure
+
+###### Set mysql configure so that we can connect the mysql from network and set default character code as utf8
 add following configs in  /etc/mysql/my.cnf 
 ```
 [client]
@@ -25,18 +27,17 @@ comment  following in /etc/mysql/my.cnf
 ```
 bind-address           = 127.0.0.1 
 ```
-
-######Create tables, set utf8 and enable remote access.
+###### Create tables, set utf8 and enable remote access.
 ```
 mysql -u root -p
 source sbp_init.sql
 ```
-###samba Configure (optional)
+### Samba Configure (optional)
 ```
 sudo mkdir /home/pi/samba
 sudo mount -t cifs //192.168.123.183/移动磁盘-C /home/pi/samba
 ```
-###Fill the Correct info in sbp.ini
+### Fill the Correct info in sbp.ini
 ```
 {  
     "mysql":  
@@ -67,11 +68,11 @@ sudo mount -t cifs //192.168.123.183/移动磁盘-C /home/pi/samba
 }  
 
 ```
-###Run Create book list table
+### Run Create book list table
 ```
 python sbp_table.py
 ```
-###Run Server
+### Run Server
 ```
 python sbp_server.py
 ```
